@@ -1,0 +1,80 @@
+{
+  "inicio": "PAG-01",
+  "nodos": {
+    "PAG-01": {
+      "id": "PAG-01",
+      "tipo": "intro",
+      "texto": "El olor a humedad y a vino barato te despierta. Estás boca abajo en el piso de baldosas rojas y negras de un conventillo de La Boca. El techo de chapa acanalada gotea. Afuera, el silencio es tan pesado que escuchás el agua del Riachuelo chocando contra los pilotines del puente.\n\nTe levantás. La mesa está llena de facturas podridas. En la heladera solo hay un termo con yerba y una botella de vino Tinto. Agarrás la mochila que tenés al lado.\n\nRevisás la radio de la camioneta. Solo se escucha estática. Pero entre la estática, una voz robótica repite: 'Atención sobrevivientes. Punto de extracción en Constitución. Tren con destino al norte. Salida 06:00. Se suspende por bombardeo de la zona sur.'\nMirás el reloj de pared. Son las 20:00. Tienes 10 horas.",
+      "opciones": [
+        {"texto": "Buscar en el cuarto de adelante (puede haber vendas o comida)", "destino": "PAG-02A", "condicion": null},
+        {"texto": "Bajar directo a la calle (ahorras tiempo, pero sin provisiones)", "destino": "PAG-02B", "condicion": null}
+      ]
+    },
+    "PAG-02A": {
+      "id": "PAG-02A",
+      "texto": "Revisás el cuarto de adelante. Encontrás un botiquín viejo con vendas y alcohol, y una caja de bizcochitos de grasa. Guardás todo en la mochila. +10 minutos de preparación.",
+      "opciones": [
+        {"texto": "Salir a la calle", "destino": "PAG-03", "condicion": null}
+      ],
+      "accion": "PROVISIONES = true"
+    },
+    "PAG-02B": {
+      "id": "PAG-02B",
+      "texto": "Bajás las escaleras rápido. Llegás al zaguán. La puerta de calle está entreabierta. Afuera, la calle Museo está cubierta de diarios viejos y un auto incendiado.",
+      "opciones": [
+        {"texto": "Salir a la calle", "destino": "PAG-03", "condicion": null}
+      ]
+    },
+    "PAG-03": {
+      "id": "PAG-03",
+      "texto": "Justo cuando vas a salir, escuchás un sollozo. Viene del cuarto del fondo, el que da al pasillo interno. Te asomás. Es una nena de 8 años, abrazada a un peluche de la Pulga. Es Sofía.\n\nElla te mira aterrada.\n\n'¿Vos sos del ejército? Mi papá es comisario, ¿lo viste?'",
+      "opciones": [
+        {"texto": "'No, soy un vecino. Vamos, te saco de acá.' (Le das confianza)", "destino": "PAG-04", "condicion": null, "accion": "CONFIANZA_SOFIA = 1"},
+        {"texto": "'Tu papá no está. Si querés venir, no hagás ruido.' (Trato frío)", "destino": "PAG-04", "condicion": null, "accion": "CONFIANZA_SOFIA = -1"}
+      ]
+    },
+    "PAG-04": {
+      "id": "PAG-04",
+      "texto": "Caminás por el Pasaje Giuffra. Las casas de chapa pintadas de colores chillones (rojo, amarillo, azul) parecen un escenario de circo abandonado. El viento levanta polvo y papeles.\n\nLlegás a la Vuelta de Rocha. El Riachuelo está espeso, negro, con burbujas. Los muelles de madera están podridos. Ahí ves el problema: una docena de infectados deambulan entre los puestos de artesanos. Están distraídos, comiendo algo en el piso.",
+      "opciones": [
+        {"texto": "Ir pegado a la pared del Riachuelo (lento pero sigiloso)", "destino": "PAG-05A", "condicion": null},
+        {"texto": "Cruzar en línea recta entre los puestos (rápido pero arriesgado)", "destino": "PAG-05B", "condicion": null}
+      ]
+    },
+    "PAG-05A": {
+      "id": "PAG-05A",
+      "texto": "Te deslizás pegado a la pared de ladrillo. El Riachuelo apesta a azufre. Lográs pasar sin que los infectados te vean. Llegás a la Cervecería Munich.",
+      "opciones": [
+        {"texto": "Entrar a la Munich", "destino": "PAG-06", "condicion": null}
+      ]
+    },
+    "PAG-05B": {
+      "id": "PAG-05B",
+      "texto": "Corrés en línea recta. Los zombies te ven. Uno gruñe y te sigue, pero te metés rápido en la entrada de la Cervecería Munich. Estás a salvo, pero hiciste ruido.",
+      "opciones": [
+        {"texto": "Entrar a la Munich", "destino": "PAG-06", "condicion": null}
+      ],
+      "accion": "RUIDO = true"
+    },
+    "PAG-06": {
+      "id": "PAG-06",
+      "texto": "Entrás a la Cervecería Munich. El olor a cerveza podrida y a humedad te golpea. El edificio está oscuro. Escuchás dos sonidos a la vez:\n\n- (Derecha) Un golpe metálico. Carlos está atrapado debajo de unos barriles. Tiene la pierna atascada.\n- (Izquierda) El llanto ahogado de Sofía, que se metió en un barril de madera.\n\nEl piso de arriba cruje. Los zombies sienten el movimiento. El techo de madera empieza a ceder.\n\n¡No hay tiempo para salvar a los dos!",
+      "opciones": [
+        {"texto": "Correr a la derecha y liberar a Carlos (Sofía queda atrapada)", "destino": "PAG-FIN_A", "condicion": null, "accion": "CARLOS_VIVE = true; SOFIA_VIVE = false"},
+        {"texto": "Correr a la izquierda y sacar a Sofía (Carlos queda aplastado)", "destino": "PAG-FIN_B", "condicion": null, "accion": "CARLOS_VIVE = false; SOFIA_VIVE = true"}
+      ]
+    },
+    "PAG-FIN_A": {
+      "id": "PAG-FIN_A",
+      "texto": "Usás una barreta para liberar a Carlos. El techo se derrumba sobre el barril de Sofía. Carlos te arrastra al túnel de AySA.\n\n'Gracias, pibe. Mirá, si no te llevo al subte E, que me maten. Pero antes, escuchame bien: en el hospital Argerich hay una médica, Eva. Si llegamos hasta ella, ella tiene un mapa de las cloacas hasta Constitución.'\n\nFIN DEL CAPÍTULO 1.",
+      "opciones": [],
+      "final": true
+    },
+    "PAG-FIN_B": {
+      "id": "PAG-FIN_B",
+      "texto": "Tirás la tapa del barril y sacás a Sofía en brazos. Carlos queda aplastado por los barriles y los zombies entran en estampida. Corrés por el pasillo de la calle Olaya con ella.\n\nSofía llora: '¿Por qué no lo ayudaste? ¡Él se va a morir!'\n\nTe abraza con fuerza. Luego, saca una tarjeta de su bolsillo. Es el DNI de su papá, comisario de la Federal.\n\n'Mi papá está en Constitución. Si le mostrás esto, no te van a disparar.'\n\nFIN DEL CAPÍTULO 1.",
+      "opciones": [],
+      "final": true
+    }
+  }
+}
